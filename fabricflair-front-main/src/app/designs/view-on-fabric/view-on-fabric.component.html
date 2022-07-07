@@ -1,0 +1,63 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-9">
+        <mat-form-field class="mat-form-field">
+          <mat-select
+            placeholder="Filter"
+            [formControl]="exclusive"
+            (change)="onExclusiveChange()"
+          >
+            <mat-option
+              *ngFor="let exclusive of exclusive_customers"
+              [value]="exclusive"
+            >
+              {{ exclusive }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div
+        class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"
+        *ngFor="
+          let fabric of fabrics | designoverfabricfilter: filterargs;
+          let i = index
+        "
+      >
+        <div class="card-image" data-header-animation="true">
+          <div
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <img
+              src="/thumbnails/{{ fileName(fabric.masterFile) }}"
+              width="100%"
+              height="405px"
+            />
+            <img
+              src="/{{ design.design_masterfile }}"
+              width="{{ designWidth }}"
+              style="position: absolute"
+            />
+          </div>
+        </div>
+        <div>
+          <h4 class="center">{{ fabric.title | slice: 0:20 }}...</h4>
+          <h4 class="center">On</h4>
+          <h4 class="center">{{ design.pattern_name | slice: 0:20 }}</h4>
+        </div>
+        <div class="center">
+          <button
+            class="btn btn-danger btn-xs"
+            (click)="downloadSelected(fabric)"
+          >
+            Download
+          </button>
+          <button class="btn btn-danger btn-xs">Zoom</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

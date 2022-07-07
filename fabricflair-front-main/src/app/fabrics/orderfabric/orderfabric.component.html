@@ -1,0 +1,495 @@
+<style>
+  .fabric-type {
+    background-color: #f4f4f4;
+    border-radius: 12px;
+    padding: 1em;
+    margin-top: 0.5em;
+  }
+
+  .fabric-type.selected {
+    background-color: #cac7c7 !important;
+  }
+
+  .orderOption:hover {
+    cursor: pointer;
+  }
+</style>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="col-sm-12">
+      <div class="wizard-container">
+        <div class="card wizard-card" data-color="rose" id="wizardProfile">
+          <form action="" method="">
+            <div class="wizard-header">
+              <h3 class="wizard-title">
+                {{ fabric?.title }}
+              </h3>
+            </div>
+            <div class="wizard-navigation">
+              <ul>
+                <li>
+                  <a href="#product" data-toggle="tab">Product</a>
+                </li>
+                <li>
+                  <a href="#options" data-toggle="tab">Options</a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content">
+              <div class="tab-pane" id="product">
+                <h4 class="info-text">Choose A Product</h4>
+                <div class="row">
+                  <div class="col-lg-10 col-lg-offset-1">
+                    <div class="col-sm-4">
+                      <div data-toggle="wizard-checkbox">
+                        <input
+                          type="radio"
+                          name="jobb"
+                          value="euro"
+                          [(ngModel)]="selectedProduct"
+                          (change)="onProductItemChange($event.target.value)"
+                          checked
+                        />
+                        <h6>Euro Meter Panel</h6>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div data-toggle="wizard-checkbox">
+                        <input
+                          type="radio"
+                          name="jobb"
+                          value="us"
+                          [(ngModel)]="selectedProduct"
+                          (change)="onProductItemChange($event.target.value)"
+                        />
+                        <h6>US 54" Panel</h6>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div data-toggle="wizard-checkbox">
+                        <input
+                          type="radio"
+                          name="jobb"
+                          value="bagged"
+                          [(ngModel)]="selectedProduct"
+                          (change)="onProductItemChange($event.target.value)"
+                        />
+                        <h6>Fat Quarters Cut & Bagged</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="options">
+                <div class="row">
+                  <h4 class="info-text">Choose An Option</h4>
+                  <div class="col-sm-4 col-sm-offset-1"></div>
+                </div>
+                <div
+                  class="row text-center"
+                  *ngIf="selectedProduct != 'bagged'"
+                >
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('fat-16')"
+                  >
+                    <div
+                      *ngIf="!fabric?.seamless"
+                      data-toggle="wizard-checkbox"
+                      class="fabric-type"
+                      [ngClass]="{ selected: selectedOption === 'fat-16' }"
+                    >
+                      <img
+                        src="/previews/{{ this.previewImages.fat16 }}"
+                        width="100%"
+                        height="120px"
+                      />
+
+                      <h6><b>Fat 16th</b></h6>
+                      <p *ngIf="selectedProduct == 'us'">
+                        <b>9x13.5"</b> Qty per 36x54" panel: 16<br />
+                        {{ getMeasurements(fabric?.inches, "fat-16") }}" Design
+                        area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                      <p *ngIf="selectedProduct == 'euro'">
+                        <b>9x10"</b> Qty per 36x40" panel: 16<br />
+                        {{ getMeasurements(fabric?.inches, "fat-16") }}" Design
+                        area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('fat-12')"
+                  >
+                    <div
+                      *ngIf="!fabric?.seamless"
+                      data-toggle="wizard-checkbox"
+                      class="fabric-type"
+                      [ngClass]="{ selected: selectedOption === 'fat-12' }"
+                    >
+                      <img
+                        src="/previews/{{ this.previewImages.fat12 }}"
+                        width="40%"
+                        height="120px"
+                      />
+
+                      <h6><b>Fat 12th</b></h6>
+                      <p *ngIf="selectedProduct == 'us'">
+                        <b>12x13.5"</b> Qty per 36x54" panel: 12<br />
+                        {{ getMeasurements(fabric?.inches, "fat-12") }}" Design
+                        area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                      <p *ngIf="selectedProduct == 'euro'">
+                        <b>12x10"</b> Qty per 36x40" panel: 12<br />
+                        {{ getMeasurements(fabric?.inches, "fat-12") }}" Design
+                        area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('fat-9')"
+                  >
+                    <div
+                      *ngIf="!fabric?.seamless"
+                      data-toggle="wizard-checkbox"
+                      class="fabric-type"
+                      [ngClass]="{ selected: selectedOption === 'fat-9' }"
+                    >
+                      <img
+                        src="/previews/{{ this.previewImages.fat9 }}"
+                        width="100%"
+                        height="120px"
+                      />
+
+                      <h6><b>Fat 9th</b></h6>
+                      <p *ngIf="selectedProduct == 'us'">
+                        <b>12x18"</b> Qty per 36x54" panel: 9<br />
+                        {{ getMeasurements(fabric?.inches, "fat-9") }}" Design
+                        area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                      <p *ngIf="selectedProduct == 'euro'">
+                        <b>12x13.4"</b> Qty per 36x40" panel: 9<br />
+                        {{ getMeasurements(fabric?.inches, "fat-9") }}" Design
+                        area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('fat-8')"
+                  >
+                    <div
+                      *ngIf="!fabric?.seamless"
+                      data-toggle="wizard-checkbox"
+                      class="fabric-type"
+                      [ngClass]="{ selected: selectedOption === 'fat-8' }"
+                    >
+                      <img
+                        src="/previews/{{ this.previewImages.fat8 }}"
+                        width="100%"
+                        height="120px"
+                      />
+
+                      <h6><b>Fat 8th</b></h6>
+                      <p *ngIf="selectedProduct == 'us'">
+                        <b>18x13.5"</b> Qty per 36x54" panel: 8<br />
+                        {{ getMeasurements(fabric?.inches, "fat-8") }}" Design
+                        area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                      <p *ngIf="selectedProduct == 'euro'">
+                        <b>18x10"</b> Qty per 36x40" panel: 8<br />
+                        {{ getMeasurements(fabric?.inches, "fat-8") }}" Design
+                        area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('fat-quarter')"
+                    *ngIf="selectedProduct == 'us'"
+                  >
+                    <div
+                      *ngIf="!fabric?.seamless"
+                      data-toggle="wizard-checkbox"
+                      class="fabric-type"
+                      [ngClass]="{ selected: selectedOption === 'fat-quarter' }"
+                    >
+                      <img
+                        src="/previews/{{ this.previewImages.quarter }}"
+                        width="100%"
+                        height="120px"
+                      />
+
+                      <h6><b>Fat Quarter</b></h6>
+                      <p>
+                        <b>18x27"</b> Qty per 36x54" panel: 4<br />
+                        {{ getMeasurements(fabric?.inches, "fat-quarter") }}"
+                        Design area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('fat-half')"
+                  >
+                    <div
+                      data-toggle="wizard-checkbox"
+                      *ngIf="selectedProduct == 'us' && !fabric?.seamless"
+                      class="fabric-type"
+                      [ngClass]="{ selected: selectedOption === 'fat-half' }"
+                    >
+                      <img
+                        src="/previews/{{ this.previewImages.half }}"
+                        width="100%"
+                        height="120px"
+                      />
+
+                      <h6><b>Fat Half</b></h6>
+                      <p>
+                        <b>27x36"</b> Qty per 36x54" panel: 2<br />
+                        {{ getMeasurements(fabric?.inches, "fat-half") }}"
+                        Design area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('54-panel')"
+                  >
+                    <div
+                      data-toggle="wizard-checkbox"
+                      *ngIf="selectedProduct == 'us'"
+                      class="fabric-type"
+                      [ngClass]="{ selected: selectedOption === '54-panel' }"
+                    >
+                      <img
+                        src="/previews/{{ this.previewImages.full }}"
+                        width="100%"
+                        height="120px"
+                      />
+
+                      <h6><b>54" Panel</b></h6>
+                      <p>
+                        <b>36x54""</b> Qty per 36x54" panel: 1<br />
+                        {{ getMeasurements(fabric?.inches, "54-panel") }}"
+                        Design area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-xs-4 orderOption"
+                    *ngIf="selectedProduct == 'euro'"
+                    (click)="onOptionItemChange('regular-cut')"
+                  >
+                    <div
+                      *ngIf="!fabric?.seamless"
+                      data-toggle="wizard-checkbox"
+                      class="fabric-type"
+                      [ngClass]="{ selected: selectedOption === 'regular-cut' }"
+                    >
+                      <img
+                        src="/previews/{{ this.previewImages.quarter }}"
+                        width="100%"
+                        height="120px"
+                      />
+
+                      <h6>Regular Cut</h6>
+                      <p>
+                        <b>18x20""</b> Qty per 36x40" panel: 4<br />
+                        {{ getMeasurements(fabric?.inches, "quarter-cut") }}"
+                        Design area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('fat-half')"
+                  >
+                    <div
+                      data-toggle="wizard-checkbox"
+                      *ngIf="selectedProduct == 'euro' && !fabric?.seamless"
+                      class="fabric-type"
+                      [ngClass]="{ selected: selectedOption === 'fat-half' }"
+                    >
+                      <img
+                        src="/previews/{{ this.previewImages.half }}"
+                        width="100%"
+                        height="120px"
+                      />
+
+                      <h6><b>Fat Half</b></h6>
+                      <p>
+                        <b>36x20""</b> Qty per 36x40" panel: 2<br />
+                        {{ getMeasurements(fabric?.inches, "fat-half") }}"
+                        Design area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('40-full-panel')"
+                  >
+                    <div
+                      data-toggle="wizard-checkbox"
+                      *ngIf="selectedProduct == 'euro'"
+                      class="fabric-type"
+                      [ngClass]="{
+                        selected: selectedOption === '40-full-panel'
+                      }"
+                    >
+                      <img
+                        src="/previews/{{ this.previewImages.full }}"
+                        width="100%"
+                        height="120px"
+                      />
+
+                      <h6><b>40" Full Panel</b></h6>
+                      <p>
+                        <b>36x40""</b> Qty per 36x40" panel: 1<br />
+                        {{ getMeasurements(fabric?.inches, "40-panel") }}"
+                        Design area with {{ fabric?.inches }}" Framing Allowance
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row text-center"
+                  *ngIf="selectedProduct == 'bagged' && !fabric?.seamless"
+                >
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('fat-quarter')"
+                  >
+                    <div data-toggle="wizard-checkbox">
+                      <input
+                        type="radio"
+                        name="fabricOption"
+                        value="fat-quarter"
+                        (change)="onOptionItemChange($event.target.value)"
+                        [checked]="!fabric?.seamless"
+                      />
+                      <h6>Fat Quarter</h6>
+                    </div>
+                  </div>
+                  <div
+                    class="col-xs-4 orderOption"
+                    (click)="onOptionItemChange('regular-cut')"
+                  >
+                    <div data-toggle="wizard-checkbox">
+                      <input
+                        type="radio"
+                        name="fabricOption"
+                        value="regular-cut"
+                        (change)="onOptionItemChange($event.target.value)"
+                      />
+                      <h6>Regular-Cut</h6>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row row-eq-height text-center">
+                  <div class="col-xs-4">
+                    <div class="form-group label-floating is-empty">
+                      <mat-form-field class="mat-form-field">
+                        <mat-select
+                          placeholder="Choose Fabric Type"
+                          [(value)]="selectedType"
+                        >
+                          <mat-option name="fabricType" value="14-aida">
+                            14 Aida
+                          </mat-option>
+                          <mat-option name="fabricType" value="16-aida">
+                            16 Aida
+                          </mat-option>
+                          <mat-option name="fabricType" value="18-aida">
+                            18 Aida
+                          </mat-option>
+                          <mat-option name="fabricType" value="28-evenweave">
+                            28 Evenweave
+                          </mat-option>
+                          <mat-option name="fabricType" value="32-evenweave">
+                            32 Evenweave
+                          </mat-option>
+                          <mat-option name="fabricType" value="36-evenweave">
+                            36 Evenweave
+                          </mat-option>
+                          <mat-option name="fabricType" value="28-linen">
+                            28 Linen
+                          </mat-option>
+                          <mat-option name="fabricType" value="32-linen">
+                            32 Linen
+                          </mat-option>
+                          <mat-option name="fabricType" value="36-linen">
+                            36 Linen </mat-option
+                          ><mat-option name="fabricType" value="40-linen">
+                            40 Linen
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-xs-3">
+                    <div class="form-group label-floating is-empty">
+                      <div class="togglebutton">
+                        <label>
+                          Silver?
+                          <input
+                            name="hasSilver"
+                            type="checkbox"
+                            [(ngModel)]="hasSilver"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5">
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label"></label>
+                      <input
+                        type="number"
+                        name="quantity"
+                        [(ngModel)]="quantity"
+                        class="form-control"
+                        placeholder="Quantity (Panels)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="wizard-footer">
+              <div class="pull-right">
+                <input
+                  type="button"
+                  class="btn btn-next btn-fill btn-rose btn-wd"
+                  name="next"
+                  value="Next"
+                />
+                <input
+                  type="button"
+                  class="btn btn-finish btn-fill btn-rose btn-wd"
+                  name="finish"
+                  value="Finish"
+                  (click)="addToCart()"
+                />
+              </div>
+              <div class="pull-left">
+                <input
+                  type="button"
+                  class="btn btn-previous btn-fill btn-default btn-wd"
+                  name="previous"
+                  value="Previous"
+                />
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

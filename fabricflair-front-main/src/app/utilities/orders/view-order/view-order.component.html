@@ -1,0 +1,124 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="col-md-6">
+            <div class="card-content">
+              <h3>Bill to</h3>
+              <b>{{ order?.customer }}</b>
+              <br />
+              <br />
+              <p>{{ order?.shipping.name }}</p>
+              <p>{{ order?.shipping.address.address_line_1 }}</p>
+              <p *ngIf="order?.shipping.address.admin_area_1.length != 0">
+                {{ order?.shipping.address.admin_area_1 }},
+                {{ order?.shipping.address.admin_area_2 }}
+                {{ order?.shipping.address.postal_code }}
+              </p>
+              <p>{{ order?.shipping.address.country_code }}</p>
+              <br />
+              <p>{{ order?.account_phone_number }}</p>
+              <p><b>Payment account:</b> {{ order?.payee_email }}</p>
+              <p><b>Customer email:</b>{{ order?.designer_program_email }}</p>
+              <p *ngIf="order?.reference != null">
+                <b>Reference:</b> {{ order?.reference }}
+              </p>
+              <p *ngIf="order?.tracking_number != null">
+                <b>Tracking number:</b> {{ order?.tracking_number }}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-content text-right">
+              <h5>Invoice Number: {{ order?.invoice_number }}</h5>
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    <tr *ngFor="let image of imagePaths">
+                      <td class="text-center">
+                        <a href="{{ image?.img_link }}" target="_blank">{{
+                          image?.filename
+                        }}</a>
+                      </td>
+                      <td class="td-actions text-right">
+                        <button
+                          type="button"
+                          class="btn btn-info"
+                          (click)="downloadImage(image.path, image.filename)"
+                        >
+                          <i class="material-icons">cloud_download</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-content">
+              <h4 class="card-title">Ordered Fabrics</h4>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Product</th>
+                      <th>Type</th>
+                      <th>Qty</th>
+                      <th class="text-right">Price</th>
+                      <th class="text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of orderItems; let i = index">
+                      <td class="text-center">{{ i }}</td>
+                      <td>{{ item.fabric_name }}</td>
+                      <td>
+                        <p *ngIf="item.product == 'us'">
+                          54" / {{ item.type }} / {{ item.option }}
+                        </p>
+                        <p *ngIf="item.product == 'euro'">
+                          40" / {{ item.type }} / {{ item.option }}
+                        </p>
+                        <p *ngIf="item.product == 'bagged'">
+                          Bagged / {{ item.type }} / {{ item.option }}
+                        </p>
+                      </td>
+                      <td>{{ item.quantity }}</td>
+                      <td class="text-right">
+                        ${{ item.price | number: "1.2-2" }}
+                      </td>
+                      <td class="text-right">
+                        ${{ item.price * item.quantity | number: "1.2-2" }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="4"></td>
+                      <td class="td-sub">Discount</td>
+                      <td class="td-sub-price">
+                        - ${{ order?.discount | number: "1.2-2" }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="4"></td>
+                      <td class="td-total">Total</td>
+                      <td class="td-price">
+                        ${{ order?.total | number: "1.2-2" }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

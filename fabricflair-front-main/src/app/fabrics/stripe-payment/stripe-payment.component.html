@@ -1,0 +1,125 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-content">
+            <h4 class="card-title">Order Summary</h4>
+            <div class="table-responsive">
+              <table class="table table-shopping">
+                <thead>
+                  <tr>
+                    <th class="text-center">{{ orders?.headerRow[0] }}</th>
+                    <th>{{ orders?.headerRow[1] }}</th>
+                    <th class="th-description">{{ orders?.headerRow[2] }}</th>
+                    <th class="th-description"></th>
+                    <th class="text-right">{{ orders?.headerRow[4] }}</th>
+                    <th class="text-right">{{ orders?.headerRow[5] }}</th>
+                    <th class="text-right">{{ orders?.headerRow[6] }}</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of orders?.dataRows">
+                    <td>
+                      <div class="img-container">
+                        <img
+                          src="/thumbnails/{{ fileName(row[0]) }}"
+                          alt="..."
+                        />
+                      </div>
+                    </td>
+                    <td class="td-name">
+                      <a href="{{ row[1] }}">{{ row[2] }}</a>
+                      <br />
+                      <small>{{ row[3] }}</small>
+                    </td>
+                    <td>{{ row[4] }}</td>
+                    <td></td>
+                    <td class="td-number text-right">
+                      <small>$</small>{{ row[6] }}
+                    </td>
+                    <td class="td-number">
+                      {{ row[7] }}
+                    </td>
+                    <td class="td-number">
+                      <small>$</small>{{ row[8] | number: "1.2-2" }}
+                    </td>
+                    <td class="td-actions"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="5"></td>
+                    <td class="td-sub">Discount</td>
+                    <td colspan="1" class="td-sub-price">
+                      - ${{ discount | number: "1.2-2" }}
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td colspan="5"></td>
+                    <td class="td-total">Total</td>
+                    <td colspan="1" class="td-price">
+                      ${{ amount | number: "1.2-2" }}
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td colspan="5"></td>
+                    <td class="td-total">Reference</td>
+                    <td colspan="1" class="td-price">
+                      <input [(ngModel)]="customerReference" type="text" class="form-control" placeholder="Customer reference (Optional)" />
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td colspan="6"></td>
+                    <td colspan="2" class="text-right">
+                      <div #paypal></div>
+                      <div class="togglebutton">
+                        <label>
+                          <input
+                            type="checkbox"
+                            [(ngModel)]="otherPayment"
+                            [ngModelOptions]="{ standalone: true }"
+                          />
+                          Check/Other Payment
+                        </label>
+                      </div>
+                      <div
+                        *ngIf="otherPayment"
+                        class="form-group label-floating is-empty"
+                      >
+                        <p class="text-left">Insert reference:</p>
+                        <input
+                          [(ngModel)]="reference"
+                          type="text"
+                          class="form-control"
+                          placeholder="Insert check reference"
+                        />
+                        <app-field-error-display
+                          class="text-left"
+                          [displayError]="isFieldValid(reference)"
+                          errorMsg="Reference is required"
+                        >
+                        </app-field-error-display>
+                        <button
+                          class="text-left btn btn-danger btn-round"
+                          (click)="otherPaymentCheckout()"
+                        >
+                          Checkout
+                        </button>
+                      </div>
+
+                      <!--                                               <button type="button" class="btn btn-danger btn-round" (click)="makePayment(amount*100)">Pay ${{amount}} <i class="material-icons">keyboard_arrow_right</i></button>
+ -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

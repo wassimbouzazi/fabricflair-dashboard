@@ -1,0 +1,191 @@
+<div class="hero-main">
+  <div class="menu-area">
+    <div class="container-fluid">
+      <div class="menu-nav">
+        <div class="menu-login">
+          <div class="search">
+            <label for=""
+              ><span><i class="fa fa-user"></i></span
+            ></label>
+            <input [(ngModel)]="email" type="email" placeholder="Email" />
+          </div>
+          <div class="search-icon">
+            <span><i class="fa fa-search"></i></span>
+          </div>
+          <div class="password">
+            <label for=""
+              ><span><i class="fa fa-key"></i></span
+            ></label>
+            <input
+              [(ngModel)]="password"
+              type="password"
+              placeholder="Password"
+            />
+          </div>
+          <div class="menu-btns">
+            <button (click)="login()">LOGIN</button>
+            <button [routerLink]="['/register']">REGISTER</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- hero-area-start  -->
+  <div class="hero-area">
+    <div class="contianer">
+      <div class="hero-wrapper">
+        <div class="row">
+          <div class="text-center col-lg-5 col-sm-10 col-md-7 m-sm-auto">
+            <div class="hero-content">
+              <h2>DESIGNER PROGRAM</h2>
+              <p>Since 1990 Fabric Flair has provided designers choice;</p>
+
+              <p>
+                Have an idea for a fabric?; <br />
+                We love to bring your idea to life, get in touch today!<br />Free
+                in house design services and customer liason.
+              </p>
+
+              <p>
+                Regular supply and shipments from three continents.<br />Access
+                to sampling quantities when mentioned in print.<br />Brand
+                exposure to our network of customers.<br />Access to the coolest
+                fabrics in the world.
+              </p>
+
+              <div class="retgister-btn">
+                <a [routerLink]="['/register']">Register Account</a>
+                <p>Proof of trade required*</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- hero-area-end   -->
+  <div class="uplaod-preview">
+    <p>
+      Upload & Preview your Designs to scale on our fabrics <br />
+      <br />
+      Pair the best matches in minutes...
+    </p>
+  </div>
+</div>
+
+<!-- hero-area-end  -->
+
+<!-- bli-zerd-area-start  -->
+<div class="blizerd-area">
+  <div class="container">
+    <div class="blizerd-wrapper">
+      <div class="row align-items-end">
+        <div class="col-lg-8 col-md-12">
+          <div class="blizerd-left">
+            <div class="row no-gutters">
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="first-img">
+                  <img
+                    src="../../assets/img/login-imgs/1.jpg"
+                    alt="No Image  not found"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="second-img">
+                  <img
+                    src="../../assets/img/login-imgs/2.jpg"
+                    alt="No Image  not found"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="third-img">
+                  <img
+                    src="../../assets/img/login-imgs/3.jpg"
+                    alt="No Image  not found"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="blizzerd-right">
+            <div class="right-item">
+              <img
+                src="../../assets/img/login-imgs/r1.jpg"
+                alt="Image not found "
+                loading="lazy"
+              />
+            </div>
+            <div class="right-item">
+              <img
+                src="../../assets/img/login-imgs/r2.jpg"
+                alt="Image not found "
+                loading="lazy"
+              />
+            </div>
+            <div class="right-item">
+              <img
+                src="../../assets/img//login-imgs/r3.jpg"
+                alt="Image not found "
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- bli-zerd-area-end   -->
+
+<!-- contact-info-area-start  -->
+<div class="contract-info">
+  <div class="container">
+    <div class="contact-infol-wrapepr">
+      <div class="contact-content">
+        <h3>I’m a Designer, how does this all work?</h3>
+        <p>
+          We love to talk about your ideas. We’re here to have fun. In essense
+          to support you in creating or finding the perfect fabric for your next
+          design.
+        </p>
+        <p>
+          A fun, popular fabric adds value and is an easy way to increase your
+          sales!
+        </p>
+        <p>
+          - Free, unlimited, in house design services and revisions based on
+          your written or verbal requirements. <br />
+          - Access to individual 18x19” samples at trade pricing* <br />
+          - Fabrics shown & mentioned in publication sent free. <br />
+          - Distribution of your fabric via prominent retailers and exposure of
+          your brand (Exclusivitiy and excusivity of sale if preffered, custom
+          branding etc, we’re flexible). <br />
+          - Discount if you buy the fabric you design, for your own kits or
+          webstore.
+        </p>
+      </div>
+
+      <div class="contact-information">
+        <h4>Questions? We’d love to talk;</h4>
+        <h2>+1 (413)2770090 (9-5 EST)</h2>
+        <p>Chat (link to webstore chat)</p>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <div class="container">
+      <p>Copyright 2022 Fabric Flair LLC. EAOE. All Rights Reserved.</p>
+    </div>
+  </div>
+</div>
+<!-- contact-info-area-end   -->
+
+<!-- Scroll-Top button -->
+<a href="#" class="scrolltotop"><i class="fas fa-angle-up"></i></a>

@@ -1,0 +1,92 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="header text-center">
+      <h3 class="title">Customers</h3>
+      <p class="category">Allow exclusivity for your customers</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div
+            class="card-header card-header-icon"
+            data-background-color="rose"
+          >
+            <i class="material-icons">assignment</i>
+          </div>
+          <div class="card-content">
+            <h4 class="card-title">Customers</h4>
+            <div class="content table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Discount %</th>
+                    <th>Is exclusive?</th>
+                    <th>Exclusive to</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let customer of customers; let i = index">
+                    <td>{{ i }}</td>
+                    <td>{{ customer.name }}</td>
+                    <td>
+                      <input
+                        [(ngModel)]="customer.discount"
+                        type="number"
+                        placeholder="(0-100)"
+                        class="form-control"
+                      />
+                    </td>
+                    <td>
+                      <div class="checkbox">
+                        <label>
+                          <input
+                            type="checkbox"
+                            name="optionsCheckboxes"
+                            [checked]="customer.is_exclusive"
+                            [(ngModel)]="customer.is_exclusive"
+                          />
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="displayFieldCss(customer.exclusive)"
+                      >
+                        <label class="control-label" for="groupName"
+                          >Exclusive text
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          [(ngModel)]="customer.exclusive"
+                          type="text"
+                          class="form-control"
+                        />
+                        <app-field-error-display
+                          [displayError]="isFieldValid(customer.exclusive)"
+                          errorMsg="exclusive text is required"
+                        >
+                        </app-field-error-display>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <button
+                type="submit"
+                class="btn btn-fill btn-rose"
+                (click)="updateCustomers()"
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

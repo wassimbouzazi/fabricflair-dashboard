@@ -1,0 +1,516 @@
+<div class="wrapper wrapper-full-page">
+  <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
+    <div class="container">
+      <div class="navbar-header">
+        <button
+          type="button"
+          class="navbar-toggle"
+          data-toggle="collapse"
+          data-target="#menu-example"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">FabricFlair Designer Program</a>
+      </div>
+      <div class="collapse navbar-collapse" id="menu-example">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active">
+            <a
+              [routerLink]="['/register']"
+              routerLinkActive="router-link-active"
+            >
+              <i class="material-icons">person_add</i> Register
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/login']" routerLinkActive="router-link-active">
+              <i class="material-icons">fingerprint</i> Login
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="full-page register-page" filter-color="black">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+            <div class="card card-signup">
+              <h2 class="card-title text-center">Trade Account Registration</h2>
+              <p class="text-center">
+                Welcome! Once you have confirmed your e-mail, please call us to
+                approve your account.
+              </p>
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                  <div class="card-content">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">face</i>
+                      </span>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="
+                          displayFieldCss(registrationForm, 'fullName')
+                        "
+                      >
+                        <label for="" class="control-label"
+                          >Full name:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="fullName"
+                          class="form-control"
+                          formControlName="fullName"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(registrationForm, 'fullName')
+                          "
+                          errorMsg="Full name is required"
+                        >
+                        </app-field-error-display>
+                      </div>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">email</i>
+                      </span>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="displayFieldCss(registrationForm, 'email')"
+                      >
+                        <label for="" class="control-label"
+                          >Email:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          class="form-control"
+                          formControlName="email"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(registrationForm, 'email')
+                          "
+                          errorMsg="Incorrect email format"
+                        >
+                        </app-field-error-display>
+                      </div>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">vpn_key</i>
+                      </span>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="
+                          displayFieldCss(registrationForm, 'password')
+                        "
+                      >
+                        <label for="" class="control-label"
+                          >Password:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="password"
+                          id="password"
+                          class="form-control"
+                          formControlName="password"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(registrationForm, 'password')
+                          "
+                          errorMsg="Minimum length: 8 characters"
+                        >
+                        </app-field-error-display>
+                      </div>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">business</i>
+                      </span>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="
+                          displayFieldCss(registrationForm, 'companyName')
+                        "
+                      >
+                        <label for="" class="control-label"
+                          >Company Name:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="companyName"
+                          class="form-control"
+                          formControlName="companyName"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(registrationForm, 'companyName')
+                          "
+                          errorMsg="Company name must be, at least, 5 characters long"
+                        >
+                        </app-field-error-display>
+                      </div>
+                    </div>
+                    <div class="input-group">
+                      <span
+                        class="input-group-addon"
+                        style="vertical-align: top"
+                      >
+                        <i class="material-icons" style="margin-top: 15px"
+                          >home</i
+                        >
+                      </span>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="
+                          displayFieldCss(
+                            registrationForm,
+                            'companyAddressLine'
+                          )
+                        "
+                      >
+                        <label for="" class="control-label"
+                          >Company Address Line:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="companyAddressLine"
+                          class="form-control"
+                          formControlName="companyAddressLine"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(registrationForm, 'companyAddressLine')
+                          "
+                          errorMsg="Company Address Line is required"
+                        >
+                        </app-field-error-display>
+                      </div>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="
+                          displayFieldCss(
+                            registrationForm,
+                            'companyAddressRegion'
+                          )
+                        "
+                      >
+                        <label for="" class="control-label"
+                          >Company Address Region:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="companyAddressRegion"
+                          class="form-control"
+                          formControlName="companyAddressRegion"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(
+                              registrationForm,
+                              'companyAddressRegion'
+                            )
+                          "
+                          errorMsg="Company Address Region is required"
+                        >
+                        </app-field-error-display>
+                      </div>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="
+                          displayFieldCss(
+                            registrationForm,
+                            'companyAddressPostcode'
+                          )
+                        "
+                      >
+                        <label for="" class="control-label"
+                          >Company Address Postcode:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="number"
+                          id="companyAddressPostcode"
+                          class="form-control"
+                          formControlName="companyAddressPostcode"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(
+                              registrationForm,
+                              'companyAddressPostcode'
+                            )
+                          "
+                          errorMsg="Company Address Postcode is required"
+                        >
+                        </app-field-error-display>
+                      </div>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="
+                          displayFieldCss(
+                            registrationForm,
+                            'companyAddressCountry'
+                          )
+                        "
+                      >
+                        <label for="" class="control-label"
+                          >Company Address Country:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="companyAddressCountry"
+                          class="form-control"
+                          formControlName="companyAddressCountry"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(
+                              registrationForm,
+                              'companyAddressCountry'
+                            )
+                          "
+                          errorMsg="Company Address Country is required"
+                        >
+                        </app-field-error-display>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="card-content">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">phone</i>
+                      </span>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="
+                          displayFieldCss(registrationForm, 'companyPhone')
+                        "
+                      >
+                        <label for="" class="control-label"
+                          >Company Phone:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="number"
+                          id="companyPhone"
+                          class="form-control"
+                          formControlName="companyPhone"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(registrationForm, 'companyPhone')
+                          "
+                          errorMsg="Company Phone must be at least 8 numbers log"
+                        >
+                        </app-field-error-display>
+                      </div>
+                    </div>
+
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">language</i>
+                      </span>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="
+                          displayFieldCss(registrationForm, 'companyWebsite')
+                        "
+                      >
+                        <label for="" class="control-label"
+                          >Company Website:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="url"
+                          id="companyWebsite"
+                          class="form-control"
+                          pattern=".+\..+"
+                          formControlName="companyWebsite"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(registrationForm, 'companyWebsite')
+                          "
+                          errorMsg="Company Website is required"
+                        >
+                        </app-field-error-display>
+                      </div>
+                    </div>
+
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">lock_outline</i>
+                      </span>
+                      <div
+                        class="form-group label-floating"
+                        [ngClass]="
+                          displayFieldCss(registrationForm, 'companyEIN')
+                        "
+                      >
+                        <label for="" class="control-label"
+                          >Company TAX/EIN Number:
+                          <span class="star">*</span>
+                        </label>
+                        <input
+                          type="number"
+                          id="companyEIN"
+                          class="form-control"
+                          formControlName="companyEIN"
+                        />
+                        <app-field-error-display
+                          [displayError]="
+                            isFieldValid(registrationForm, 'companyEIN')
+                          "
+                          errorMsg="Company TAX/EIN Number is required"
+                        >
+                        </app-field-error-display>
+                      </div>
+                    </div>
+
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">manage_accounts</i>
+                      </span>
+                      <div
+                        class="input-group text-center"
+                        style="display: inline-flex"
+                      >
+                        <div class="form-group">
+                          <input
+                            type="radio"
+                            name="selectedClientType"
+                            class="form-control"
+                            style="height: 1em"
+                            id="designer"
+                            value="designer"
+                            (change)="onClientTypeChange($event.target.value)"
+                          /><label for="designer">Designer</label>
+                        </div>
+                        <div class="form-group">
+                          <input
+                            type="radio"
+                            id="retailer"
+                            name="selectedClientType"
+                            class="form-control"
+                            style="height: 1em"
+                            value="retailer"
+                            (change)="onClientTypeChange($event.target.value)"
+                          /><label for="retailer">Retailer</label>
+                        </div>
+                        <div class="form-group">
+                          <input
+                            type="radio"
+                            id="designerandretailer"
+                            name="selectedClientType"
+                            class="form-control"
+                            style="height: 1em"
+                            value="both"
+                            (change)="onClientTypeChange($event.target.value)"
+                          />
+                          <label for="designerandretailer"
+                            >Designer & Retailer</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--div class="input-group">
+                      <div class="col-lg-10 col-lg-offset-1">
+                        <div class="col-sm-4">
+                          <div data-toggle="wizard-checkbox">
+                            <input
+                              type="radio"
+                              name="registered"
+                              value="designer"
+                              [(ngModel)]="selectedClientType"
+                              (change)="onClientTypeChange($event.target.value)"
+                            />
+                            <h6>Designer</h6>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div data-toggle="wizard-checkbox">
+                            <input
+                              type="radio"
+                              name="registered"
+                              value="retailer"
+                              [(ngModel)]="selectedClientType"
+                              (change)="onClientTypeChange($event.target.value)"
+                            />
+                            <h6>Retailer</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div-->
+
+                    <div class="checkbox">
+                      <label>
+                        <input
+                          type="checkbox"
+                          name="conditionChecked"
+                          [(ngModel)]="conditionChecked"
+                          [ngModelOptions]="{ standalone: true }"
+                        />
+                        I have read and agree to FabricFlair
+                        <a>terms of trade</a>.
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input
+                          type="checkbox"
+                          name="privacyChecked"
+                          [(ngModel)]="privacyChecked"
+                          [ngModelOptions]="{ standalone: true }"
+                        />
+                        I have read and agree to
+                        <a>privacy policy</a>.
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input
+                          type="checkbox"
+                          name="registeredChecked"
+                          [(ngModel)]="registeredChecked"
+                          [ngModelOptions]="{ standalone: true }"
+                        />
+                        I am a registered Business or Designer.
+                      </label>
+                    </div>
+                  </div>
+                  <div class="footer text-center">
+                    <a class="btn btn-primary btn-round" (click)="onRegister()"
+                      >Register & Agree to Terms</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div
+      class="full-page-background"
+      style="background-image: url(../../../assets/img/register.jpeg)"
+    ></div>
+  </div>
+</div>

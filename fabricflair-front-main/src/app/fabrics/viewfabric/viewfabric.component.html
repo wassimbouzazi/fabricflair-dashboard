@@ -1,0 +1,242 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="header text-center">
+      <h3 class="title">Fabric design information</h3>
+      <p class="category">
+        In here, you'll be able to view all of your fabric design information,
+        including generated files. You'll also be able to download them.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Fabric info</h4>
+          </div>
+          <div class="card-content">
+            <div class="alert alert-info">
+              <b>Fabric title: </b><span>{{ fabric?.title }}</span>
+            </div>
+            <div class="alert alert-info">
+              <b>Fabric description: </b><span>{{ fabric?.description }}</span>
+            </div>
+            <div class="alert alert-info">
+              <b>Fabric production setting notes: </b
+              ><span>{{ fabric?.notes }}</span>
+            </div>
+            <div class="alert alert-info">
+              <b>Fabric shelf location: </b
+              ><span>{{ fabric?.shelfLocation }}</span>
+            </div>
+            <div class="alert alert-info">
+              <b>Fabric price: </b><span>{{ fabric?.price }} USD </span>
+            </div>
+            <div class="alert alert-info">
+              <b>Fabric hashtags: </b>
+              <span>
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    *ngFor="let hashtag of hashtags"
+                    class="btn btn-round btn-danger"
+                  >
+                    {{ hashtag }}
+                  </button>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div
+            class="card-header card-header-icon"
+            style="cursor: pointer"
+            (click)="zipAndDownload(fabric.title)"
+            data-background-color="rose"
+          >
+            <i style="cursor: pointer" class="material-icons">cloud_download</i>
+          </div>
+          <div class="card-content">
+            <h4 class="card-title">Generated images ({{ generatedCount }})</h4>
+            <h6>Generated files size: {{ folderSize }}</h6>
+            <!--div
+              *ngIf="imagePaths == null || imagePaths.length == 0"
+              class="alert alert-danger"
+            >
+              <span> <b> Info - </b> You haven't generated any images yet</span>
+            </div-->
+            <div *ngIf="generatedCount == 0">
+              <button
+                type="button"
+                class="btn btn-info"
+                (click)="generateFabrics()"
+              >
+                Generate all variations
+              </button>
+            </div>
+            <div *ngIf="generatedCount != 0">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="deleteGeneratedFiles()"
+              >
+                Purge all generated files
+              </button>
+            </div>
+            <div *ngIf="generatedCount != 140 && generatedCount != 0">
+              <button
+                type="button"
+                class="btn btn-info"
+                (click)="generateFabrics()"
+              >
+                Generate all remaining variations
+              </button>
+            </div>
+            <div class="table-responsive" style="overflow-wrap: anywhere">
+              <div
+                class="panel-group"
+                id="accordion"
+                role="tablist"
+                aria-multiselectable="true"
+              >
+                <div
+                  class="panel panel-default"
+                  *ngFor="let group of generated; let groupIndex = index"
+                >
+                  <div class="panel-heading" role="tab">
+                    <a
+                      class="collapsed"
+                      role="button"
+                      data-toggle="collapse"
+                      data-parent="#accordion"
+                      href="#{{ cleanup(group?.type) }}"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      <h4 class="panel-title">
+                        {{ group?.type }}
+                        <i class="material-icons">keyboard_arrow_down</i>
+                      </h4>
+                    </a>
+                  </div>
+                  <div
+                    id="{{ cleanup(group?.type) }}"
+                    class="panel-collapse collapse"
+                    role="tabpanel"
+                    aria-labelledby="GreenPricing"
+                  >
+                    <div class="panel-body">
+                      <h4>56" Images</h4>
+                      <table class="table">
+                        <tbody>
+                          <tr
+                            *ngFor="
+                              let image of group?.imgs_56;
+                              let imageIndex = index
+                            "
+                          >
+                            <td *ngIf="!image?.generated" class="text-center">
+                              <a>{{ image?.filename }}</a>
+                            </td>
+                            <td *ngIf="image?.generated" class="text-center">
+                              <a href="{{ image?.img_link }}" target="_blank">{{
+                                image?.filename
+                              }}</a>
+                            </td>
+                            <td class="td-actions text-right">
+                              <button
+                                *ngIf="image?.generated"
+                                type="button"
+                                class="btn btn-info"
+                                (click)="
+                                  downloadImage(image.path, image.filename)
+                                "
+                              >
+                                <i class="material-icons">cloud_download</i>
+                              </button>
+                              <button
+                                *ngIf="!image?.generated"
+                                type="button"
+                                class="btn btn-info"
+                                (click)="
+                                  generateSpecificFabric(
+                                    groupIndex,
+                                    imageIndex,
+                                    image
+                                  )
+                                "
+                              >
+                                <i
+                                  [class.rotating]="image.generating"
+                                  class="material-icons"
+                                  >loop</i
+                                >
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <hr />
+                      <h4>42" Images</h4>
+                      <table class="table">
+                        <tbody>
+                          <tr
+                            *ngFor="
+                              let image of group?.imgs_42;
+                              let imageIndex = index
+                            "
+                          >
+                            <td *ngIf="!image?.generated" class="text-center">
+                              <a>{{ image?.filename }}</a>
+                            </td>
+                            <td *ngIf="image?.generated" class="text-center">
+                              <a href="{{ image?.img_link }}" target="_blank">{{
+                                image?.filename
+                              }}</a>
+                            </td>
+                            <td class="td-actions text-right">
+                              <button
+                                *ngIf="image?.generated"
+                                type="button"
+                                class="btn btn-info"
+                                (click)="
+                                  downloadImage(image.path, image.filename)
+                                "
+                              >
+                                <i class="material-icons">cloud_download</i>
+                              </button>
+                              <button
+                                *ngIf="!image?.generated"
+                                type="button"
+                                class="btn btn-info"
+                                (click)="
+                                  generateSpecificFabric(
+                                    groupIndex,
+                                    imageIndex,
+                                    image
+                                  )
+                                "
+                              >
+                                <i
+                                  [class.rotating]="image.generating"
+                                  class="material-icons"
+                                  >loop</i
+                                >
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

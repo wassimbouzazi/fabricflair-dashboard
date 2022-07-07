@@ -1,0 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+body {
+  font-family: "Merriweather";
+  font-size: 16px;
+  font-weight: 400;
+  background: #fff;
+  color: #333333;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+::selection {
+  color: white;
+  background: #ff7675;
+}
+
+::-webkit-selection {
+  color: white;
+  background: #ff7675;
+}
+
+::-moz-selection {
+  color: white;
+  background: #ff7675;
+}
+
+.scrolltotop {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px 20px 0 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: block;
+  text-align: center;
+  padding-top: 8px;
+  font-size: 22px;
+  color: #ffffff;
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+  display: none;
+  transition: 0.2s all ease;
+  -webkit-transition: 0.2s all ease;
+  -moz-transition: 0.2s all ease;
+}
+
+.scrolltotop:hover {
+  background: #000;
+  color: #fff;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* hero-area-start  */
+
+.hero-main {
+  background: url(../../assets/img/login-imgs/home-banner.jpg) no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+.menu-area {
+  padding: 10px 0;
+  background: rgba(236, 236, 236, 0.7);
+}
+
+.menu-login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 460px;
+  margin-left: auto;
+}
+
+.menu-login button {
+  display: inline-block;
+  outline: none;
+  color: #fff;
+  background: #000;
+  font-size: 10px;
+  font-weight: 400;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.menu-login .search,
+.menu-login .passoword {
+  padding-left: 15px;
+  position: relative;
+}
+
+.menu-login input {
+  display: inline-block;
+  outline: none;
+  color: #000;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #d6d2cd;
+  width: 100px;
+  font-size: 10px;
+  padding: 0 10px;
+}
+
+.menu-login label {
+  margin-bottom: 0px;
+}
+
+.search-icon span {
+  display: inline-block;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+/* hero-area-start  */
+.hero-area {
+  overflow: hidden;
+}
+
+.hero-content {
+  text-align: center;
+  padding-top: 430px;
+}
+
+.hero-content h2 {
+  font-size: 44px;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 70px;
+  letter-spacing: 4px;
+}
+.hero-content p {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+}
+
+.retgister-btn {
+  padding-bottom: 400px;
+  padding-top: 50px;
+}
+
+.uplaod-preview {
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.uplaod-preview p {
+  font-size: 32px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.retgister-btn a {
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  font-style: italic;
+  font-size: 24px;
+  background: #000;
+  padding: 10px 50px;
+  margin-bottom: 15px;
+  transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
+
+.retgister-btn a:hover {
+  opacity: 0.8;
+}
+
+.retgister-btn p {
+  font-size: 16px;
+}
+
+/* hero-area-end  */
+
+/* blizerd-area-ara-start  */
+
+.blizerd-area {
+  padding: 50px 0;
+}
+
+.blizzerd-right .right-item img {
+  display: inline-block;
+  width: 100%;
+}
+
+.blizerd-left img {
+  display: inline-block;
+  width: 100%;
+}
+
+.blizerd-area .first-img {
+  margin-right: -20px;
+}
+
+.blizerd-area .third-img {
+  margin-left: -20px;
+}
+
+.blizerd-area .second-img {
+  margin-top: -10px;
+  position: relative;
+  z-index: -1;
+}
+
+/* blizerd-area-ara-end   */
+
+/* contact-info-area-start  */
+.contract-info {
+  background: url(../../assets/img/login-imgs/footer-bg.jpg) no-repeat center;
+  background-size: cover;
+  padding-top: 70px;
+}
+
+.contact-information {
+  text-align: center;
+  padding-top: 60px;
+}
+
+.copyright {
+  text-align: center;
+}
+
+.contact-content h3 {
+  font-size: 36px;
+  font-weight: 400;
+  color: #5c5c5c;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact-content p {
+  color: #5c5c5c;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.contact-information h4 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #5c5c5c;
+}
+
+.contact-information h2 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #5c5c5c;
+  margin-bottom: 40px;
+}
+
+.contact-information p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #5c5c5c;
+}
+
+.copyright {
+  padding-top: 100px;
+}
+
+.copyright p {
+  margin-bottom: 0;
+  color: #888888;
+  font-size: 24px;
+  font-weight: 400;
+  padding-bottom: 30px;
+}
+
+/* contact-info-area-end   */

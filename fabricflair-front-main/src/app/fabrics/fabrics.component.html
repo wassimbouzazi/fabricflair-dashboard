@@ -1,0 +1,557 @@
+<div class="main-content">
+  <div *ngIf="loaded == true">
+    <div class="container-fluid" *ngIf="account_type == 'root'">
+      <div class="row">
+        <div class="col-md-3 col-md-offset-9">
+          <mat-form-field class="mat-form-field">
+            <mat-select
+              placeholder="Exclusive Filter"
+              [formControl]="exclusive"
+              (change)="onExclusiveChange()"
+            >
+              <mat-option
+                *ngFor="let exclusive of exclusive_customers"
+                [value]="exclusive"
+              >
+                {{ exclusive }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br />
+      <br />
+      <div class="row">
+        <div
+          class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"
+          *ngFor="
+            let fabric of fabrics
+              | fabricfilter: filterargs
+              | paginate
+                : {
+                    id: 'rootPagination',
+                    itemsPerPage: 48,
+                    currentPage: root_p
+                  };
+            let i = index
+          "
+        >
+          <div class="card card-product">
+            <div
+              class="card-image"
+              data-header-animation="true"
+              (dblclick)="downloadPreview(fabric.masterFile)"
+            >
+              <a>
+                <img
+                  class="img"
+                  src="/thumbnails/{{ fileName(fabric.masterFile) }}"
+                />
+              </a>
+            </div>
+            <div class="card-content">
+              <div class="card-actions">
+                <button
+                  type="button"
+                  *ngIf="account_type == 'root'"
+                  class="btn btn-danger btn-simple"
+                  matTooltip="Post to FabricFlair"
+                  [matTooltipPosition]="'below'"
+                >
+                  <i class="material-icons" (click)="postToBigCommerce(fabric)"
+                    >dynamic_feed</i
+                  >
+                </button>
+                <button
+                  type="button"
+                  *ngIf="account_type == 'root'"
+                  class="btn btn-default btn-simple"
+                  matTooltip="View"
+                  [matTooltipPosition]="'below'"
+                >
+                  <i
+                    class="material-icons"
+                    routerLink="/fabrics/viewfabric/{{ fabric._id }}"
+                    >art_track</i
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-success btn-simple"
+                  matTooltip="Edit"
+                  [matTooltipPosition]="'below'"
+                >
+                  <a
+                    class="material-icons"
+                    target="_blank"
+                    routerLink="/fabrics/editfabric/{{ fabric._id }} "
+                    href="/fabrics/editfabric/{{ fabric._id }} "
+                    *ngIf="
+                      account_type == 'root' || fabric.added_by == fabric_owner
+                    "
+                    >edit</a
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-simple"
+                  matTooltip="Remove"
+                  [matTooltipPosition]="'below'"
+                >
+                  <i
+                    class="material-icons"
+                    (click)="
+                      deleteFabric(fabric._id, fabric.masterFile, fabric.title)
+                    "
+                    *ngIf="
+                      account_type == 'root' || fabric.added_by == fabric_owner
+                    "
+                    >close</i
+                  >
+                </button>
+              </div>
+              <h4 class="card-title">
+                <p style="cursor: pointer">
+                  {{ fabric.title | slice: 0:20 }}...
+                </p>
+              </h4>
+              <!-- <div class="card-description">
+                              {{fabric.description | slice: 0: 100}}
+                          </div> -->
+            </div>
+            <div class="card-footer">
+              <!-- <div class="price">
+                              <h4 class="order-hover" routerLink="/dashboard/orderfabric/{{ fabric._id }}">Order</h4>
+                          </div> -->
+              <div class="stats pull-right">
+                <p class="category">
+                  <i class="material-icons">horizontal_split</i
+                  >{{ fabric.seamless ? " Seamless " : " Not seamless " }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+
+      <div style="text-align: center">
+        <pagination-controls
+          id="rootPagination"
+          (pageChange)="root_p = $event"
+        ></pagination-controls>
+      </div>
+    </div>
+
+    <div class="container-fluid" *ngIf="account_type == 'regular'">
+      <div class="row">
+        <div class="nav-center">
+          <ul
+            class="nav nav-pills nav-pills-warning nav-pills-icons"
+            role="tablist"
+          >
+            <li class="active">
+              <a href="#all" role="tab" data-toggle="tab">
+                <i class="material-icons">category</i> ALL
+              </a>
+            </li>
+
+            <li>
+              <a href="#general" role="tab" data-toggle="tab">
+                <i class="material-icons">category</i> General Release
+              </a>
+            </li>
+
+            <li>
+              <a href="#exclusive" role="tab" data-toggle="tab">
+                <i class="material-icons">category</i> Exclusives
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <br />
+        <br />
+        <div class="tab-content">
+          <div id="all" class="tab-pane active">
+            <div class="row">
+              <div
+                class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"
+                *ngFor="
+                  let fabric of user_fabrics?.all
+                    | fabricfilter: filterargs
+                    | paginate
+                      : {
+                          id: 'allPagination',
+                          itemsPerPage: 48,
+                          currentPage: all_p
+                        };
+                  let i = index
+                "
+              >
+                <div class="card card-product">
+                  <div
+                    class="card-image"
+                    data-header-animation="true"
+                    (dblclick)="downloadPreview(fabric.masterFile)"
+                  >
+                    <a>
+                      <img
+                        class="img"
+                        src="/thumbnails/{{ fileName(fabric.masterFile) }}"
+                      />
+                    </a>
+                  </div>
+                  <div class="card-content">
+                    <h4 class="card-title">
+                      <p>{{ fabric.title | slice: 0:20 }}...</p>
+                    </h4>
+                    <!-- <div class="card-description">
+                                      {{fabric.description | slice: 0: 100}}
+                                  </div> -->
+                  </div>
+                  <div class="card-footer">
+                    <div class="price">
+                      <h4
+                        class="order-hover"
+                        routerLink="/fabrics/orderfabric/{{ fabric._id }}"
+                      >
+                        Order
+                      </h4>
+                    </div>
+                    <div class="stats pull-right">
+                      <p class="category">
+                        <i class="material-icons">horizontal_split</i
+                        >{{ fabric.seamless ? " Seamless " : " Not seamless " }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <br />
+
+            <div style="text-align: center">
+              <pagination-controls
+                id="allPagination"
+                (pageChange)="all_p = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+
+          <div id="general" class="tab-pane">
+            <div class="row">
+              <div
+                class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"
+                *ngFor="
+                  let fabric of user_fabrics?.general
+                    | fabricfilter: filterargs
+                    | paginate
+                      : {
+                          id: 'generalPagination',
+                          itemsPerPage: 48,
+                          currentPage: general_p
+                        };
+                  let i = index
+                "
+              >
+                <div class="card card-product">
+                  <div
+                    class="card-image"
+                    data-header-animation="true"
+                    (dblclick)="downloadPreview(fabric.masterFile)"
+                  >
+                    <a>
+                      <img
+                        class="img"
+                        src="/thumbnails/{{ fileName(fabric.masterFile) }}"
+                      />
+                    </a>
+                  </div>
+                  <div class="card-content">
+                    <div class="card-actions">
+                      <button
+                        type="button"
+                        *ngIf="account_type == 'root'"
+                        class="btn btn-danger btn-simple"
+                        matTooltip="Post to FabricFlair"
+                        [matTooltipPosition]="'below'"
+                      >
+                        <i
+                          class="material-icons"
+                          (click)="postToBigCommerce(fabric)"
+                          >dynamic_feed</i
+                        >
+                      </button>
+
+                      <button
+                        type="button"
+                        *ngIf="account_type == 'root'"
+                        class="btn btn-default btn-simple"
+                        matTooltip="View"
+                        [matTooltipPosition]="'below'"
+                      >
+                        <i
+                          class="material-icons"
+                          routerLink="/fabrics/viewfabric/{{ fabric._id }}"
+                          >art_track</i
+                        >
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success btn-simple"
+                        matTooltip="Edit"
+                        [matTooltipPosition]="'below'"
+                      >
+                        <i
+                          class="material-icons"
+                          routerLink="/fabrics/editfabric/{{ fabric._id }}"
+                          *ngIf="
+                            account_type == 'root' ||
+                            fabric.added_by == fabric_owner
+                          "
+                          >edit</i
+                        >
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger btn-simple"
+                        matTooltip="Remove"
+                        [matTooltipPosition]="'below'"
+                      >
+                        <i
+                          class="material-icons"
+                          (click)="
+                            deleteFabric(
+                              fabric._id,
+                              fabric.masterFile,
+                              fabric.title
+                            )
+                          "
+                          *ngIf="
+                            account_type == 'root' ||
+                            fabric.added_by == fabric_owner
+                          "
+                          >close</i
+                        >
+                      </button>
+                    </div>
+                    <h4 class="card-title">
+                      <p>{{ fabric.title | slice: 0:20 }}...</p>
+                    </h4>
+                    <!-- <div class="card-description">
+                                      {{fabric.description | slice: 0: 100}}
+                                  </div> -->
+                  </div>
+                  <div class="card-footer">
+                    <div class="price">
+                      <h4
+                        class="order-hover"
+                        routerLink="/fabrics/orderfabric/{{ fabric._id }}"
+                      >
+                        Order
+                      </h4>
+                    </div>
+                    <div class="stats pull-right">
+                      <p class="category">
+                        <i class="material-icons">horizontal_split</i
+                        >{{ fabric.seamless ? " Seamless " : " Not seamless " }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br />
+            <br />
+
+            <div style="text-align: center">
+              <pagination-controls
+                id="generalPagination"
+                (pageChange)="general_p = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+
+          <div id="exclusive" class="tab-pane">
+            <div class="col-md-8 col-md-offset-2">
+              <div
+                style="text-align: center"
+                *ngIf="user_fabrics?.user_exclusives == null"
+              >
+                <h4>
+                  Fabric Flair has a designer program, please call 1800.. 123456
+                  and we can design exclusive fabrics for you that can appear
+                  here to pair with your designs.
+                </h4>
+              </div>
+
+              <div
+                style="text-align: center"
+                *ngIf="user_fabrics?.user_exclusives?.length == 0"
+              >
+                <h4>You do not have any exclusive fabric designs.</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <div
+                class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"
+                *ngFor="
+                  let fabric of user_fabrics?.user_exclusives
+                    | fabricfilter: filterargs
+                    | paginate
+                      : {
+                          id: 'exclusivePagination',
+                          itemsPerPage: 48,
+                          currentPage: exclusive_p
+                        };
+                  let i = index
+                "
+              >
+                <div class="card card-product">
+                  <div
+                    class="card-image"
+                    data-header-animation="true"
+                    (dblclick)="downloadPreview(fabric.masterFile)"
+                  >
+                    <a>
+                      <img
+                        class="img"
+                        src="/thumbnails/{{ fileName(fabric.masterFile) }}"
+                      />
+                    </a>
+                  </div>
+                  <div class="card-content">
+                    <div class="card-actions">
+                      <button
+                        type="button"
+                        *ngIf="account_type == 'root'"
+                        class="btn btn-danger btn-simple"
+                        matTooltip="Post to FabricFlair"
+                        [matTooltipPosition]="'below'"
+                      >
+                        <i
+                          class="material-icons"
+                          (click)="postToBigCommerce(fabric)"
+                          >dynamic_feed</i
+                        >
+                      </button>
+
+                      <button
+                        type="button"
+                        *ngIf="account_type == 'root'"
+                        class="btn btn-default btn-simple"
+                        matTooltip="View"
+                        [matTooltipPosition]="'below'"
+                      >
+                        <i
+                          class="material-icons"
+                          routerLink="/fabrics/viewfabric/{{ fabric._id }}"
+                          >art_track</i
+                        >
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success btn-simple"
+                        matTooltip="Edit"
+                        [matTooltipPosition]="'below'"
+                      >
+                        <i
+                          class="material-icons"
+                          routerLink="/fabrics/editfabric/{{ fabric._id }}"
+                          *ngIf="
+                            account_type == 'root' ||
+                            fabric.added_by == fabric_owner
+                          "
+                          >edit</i
+                        >
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger btn-simple"
+                        matTooltip="Remove"
+                        [matTooltipPosition]="'below'"
+                      >
+                        <i
+                          class="material-icons"
+                          (click)="
+                            deleteFabric(
+                              fabric._id,
+                              fabric.masterFile,
+                              fabric.title
+                            )
+                          "
+                          *ngIf="
+                            account_type == 'root' ||
+                            fabric.added_by == fabric_owner
+                          "
+                          >close</i
+                        >
+                      </button>
+                    </div>
+                    <h4 class="card-title">
+                      <p>{{ fabric.title | slice: 0:20 }}...</p>
+                    </h4>
+                    <!-- <div class="card-description">
+                                      {{fabric.description | slice: 0: 100}}
+                                  </div> -->
+                  </div>
+                  <div class="card-footer">
+                    <div class="price">
+                      <h4
+                        class="order-hover"
+                        routerLink="/fabrics/orderfabric/{{ fabric._id }}"
+                      >
+                        Order
+                      </h4>
+                    </div>
+                    <div class="stats pull-right">
+                      <p class="category">
+                        <i class="material-icons">horizontal_split</i
+                        >{{ fabric.seamless ? " Seamless " : " Not seamless " }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <br />
+
+            <div
+              style="text-align: center"
+              *ngIf="
+                user_fabrics?.user_exclusives != null &&
+                user_fabrics?.user_exclusives.length != 0
+              "
+            >
+              <pagination-controls
+                id="exclusivePagination"
+                (pageChange)="exclusive_p = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loaded == false" class="loader">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle
+        class="path"
+        cx="50"
+        cy="50"
+        r="20"
+        fill="none"
+        stroke-width="2"
+        stroke-miterlimit="10"
+      />
+    </svg>
+  </div>
+</div>

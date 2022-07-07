@@ -1,0 +1,13 @@
+@font-face {
+     font-family: 'OPTITimes-Roman';
+     src: url('../fonts/OPTITimes-Roman.eot');
+     src: url('../fonts/OPTITimes-Roman.eot?#iefix') format('embedded-opentype'),
+          url('../fonts/OPTITimes-Roman.svg#OPTITimes-Roman') format('svg'),
+          url('../fonts/OPTITimes-Roman.ttf') format('truetype'),
+          url('../fonts/OPTITimes-Roman.woff') format('woff'),
+          url('../fonts/OPTITimes-Roman.woff2') format('woff2');
+     font-weight: normal;
+     font-style: normal;
+   }
+   
+   

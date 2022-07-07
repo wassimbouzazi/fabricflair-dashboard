@@ -1,0 +1,388 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <form [formGroup]="pricingsForm">
+            <div
+              class="card-header card-header-icon"
+              data-background-color="rose"
+            >
+              <i class="material-icons">mail_outline</i>
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Fill in the pricing group information:</h4>
+              <div
+                class="form-group label-floating"
+                [ngClass]="displayFieldCss(pricingsForm, 'groupName')"
+              >
+                <label class="control-label" for="groupName"
+                  >Group name:
+                  <span class="star">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="groupName"
+                  class="form-control"
+                  formControlName="groupName"
+                />
+                <app-field-error-display
+                  [displayError]="isFieldValid(pricingsForm, 'groupName')"
+                  errorMsg="Group name is required"
+                >
+                </app-field-error-display>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div
+                    class="form-group label-floating"
+                    [ngClass]="displayFieldCss(pricingsForm, 'sizeOneName')"
+                  >
+                    <label for="" class="control-label"
+                      >Size one:
+                      <span class="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="sizeOneName"
+                      class="form-control"
+                      formControlName="sizeOneName"
+                    />
+                    <app-field-error-display
+                      [displayError]="isFieldValid(pricingsForm, 'sizeOneName')"
+                      errorMsg="Size name is required"
+                    >
+                    </app-field-error-display>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div
+                    class="form-group label-floating"
+                    [ngClass]="displayFieldCss(pricingsForm, 'sizeOnePrice')"
+                  >
+                    <label for="" class="control-label"
+                      >Price:
+                      <span class="star">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="sizeOnePrice"
+                      formControlName="sizeOnePrice"
+                    />
+                    <app-field-error-display
+                      [displayError]="
+                        isFieldValid(pricingsForm, 'sizeOnePrice')
+                      "
+                      errorMsg="Size price is required"
+                    >
+                    </app-field-error-display>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div
+                    class="form-group label-floating"
+                    [ngClass]="displayFieldCss(pricingsForm, 'sizeTwoName')"
+                  >
+                    <label for="" class="control-label"
+                      >Size two:
+                      <span class="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="sizeTwoName"
+                      class="form-control"
+                      formControlName="sizeTwoName"
+                    />
+                    <app-field-error-display
+                      [displayError]="isFieldValid(pricingsForm, 'sizeTwoName')"
+                      errorMsg="Size name is required"
+                    >
+                    </app-field-error-display>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div
+                    class="form-group label-floating"
+                    [ngClass]="displayFieldCss(pricingsForm, 'sizeTwoPrice')"
+                  >
+                    <label for="" class="control-label"
+                      >Price:
+                      <span class="star">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="sizeTwoPrice"
+                      formControlName="sizeTwoPrice"
+                    />
+                    <app-field-error-display
+                      [displayError]="
+                        isFieldValid(pricingsForm, 'sizeTwoPrice')
+                      "
+                      errorMsg="Size price is required"
+                    >
+                    </app-field-error-display>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div
+                    class="form-group label-floating"
+                    [ngClass]="displayFieldCss(pricingsForm, 'sizeThreeName')"
+                  >
+                    <label for="" class="control-label"
+                      >Size three:
+                      <span class="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="sizeThreeName"
+                      class="form-control"
+                      formControlName="sizeThreeName"
+                    />
+                    <app-field-error-display
+                      [displayError]="
+                        isFieldValid(pricingsForm, 'sizeThreeName')
+                      "
+                      errorMsg="Size name is required"
+                    >
+                    </app-field-error-display>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div
+                    class="form-group label-floating"
+                    [ngClass]="displayFieldCss(pricingsForm, 'sizeThreePrice')"
+                  >
+                    <label for="" class="control-label"
+                      >Price:
+                      <span class="star">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="sizeThreePrice"
+                      formControlName="sizeThreePrice"
+                    />
+                    <app-field-error-display
+                      [displayError]="
+                        isFieldValid(pricingsForm, 'sizeThreePrice')
+                      "
+                      errorMsg="Size price is required"
+                    >
+                    </app-field-error-display>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div
+                    class="form-group label-floating"
+                    [ngClass]="displayFieldCss(pricingsForm, 'sizeFourName')"
+                  >
+                    <label for="" class="control-label"
+                      >Size four:
+                      <span class="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="sizeFourName"
+                      class="form-control"
+                      formControlName="sizeFourName"
+                    />
+                    <app-field-error-display
+                      [displayError]="
+                        isFieldValid(pricingsForm, 'sizeFourName')
+                      "
+                      errorMsg="Size name is required"
+                    >
+                    </app-field-error-display>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div
+                    class="form-group label-floating"
+                    [ngClass]="displayFieldCss(pricingsForm, 'sizeFourPrice')"
+                  >
+                    <label for="" class="control-label"
+                      >Price:
+                      <span class="star">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="sizeFourPrice"
+                      formControlName="sizeFourPrice"
+                    />
+                    <app-field-error-display
+                      [displayError]="
+                        isFieldValid(pricingsForm, 'sizeFourPrice')
+                      "
+                      errorMsg="Size price is required"
+                    >
+                    </app-field-error-display>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div
+                    class="form-group label-floating"
+                    [ngClass]="displayFieldCss(pricingsForm, 'sizeFiveName')"
+                  >
+                    <label for="" class="control-label"
+                      >Size five:
+                      <span class="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="sizeFiveName"
+                      class="form-control"
+                      formControlName="sizeFiveName"
+                    />
+                    <app-field-error-display
+                      [displayError]="
+                        isFieldValid(pricingsForm, 'sizeFiveName')
+                      "
+                      errorMsg="Size name is required"
+                    >
+                    </app-field-error-display>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div
+                    class="form-group label-floating"
+                    [ngClass]="displayFieldCss(pricingsForm, 'sizeFivePrice')"
+                  >
+                    <label for="" class="control-label"
+                      >Price:
+                      <span class="star">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="sizeFivePrice"
+                      formControlName="sizeFivePrice"
+                    />
+                    <app-field-error-display
+                      [displayError]="
+                        isFieldValid(pricingsForm, 'sizeFivePrice')
+                      "
+                      errorMsg="Size price is required"
+                    >
+                    </app-field-error-display>
+                  </div>
+                </div>
+              </div>
+
+              <div class="category form-category">
+                <span class="star">*</span> Required fields
+              </div>
+              <div class="form-footer text-right">
+                <div class="form-group">
+                  <button
+                    type="submit"
+                    class="btn btn-rose btn-fill btn-wd"
+                    (click)="onSave()"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Current price groups</h4>
+          </div>
+
+          <div>
+            <div class="card-content text-center">
+              <h4 *ngIf="pricings.length == 0">
+                No pricing group found. Fill in the form above.
+              </h4>
+            </div>
+          </div>
+          <div class="card-content">
+            <div
+              class="panel-group"
+              id="accordion"
+              role="tablist"
+              aria-multiselectable="true"
+            >
+              <div class="panel panel-default" *ngFor="let pricing of pricings">
+                <div class="panel-heading" role="tab">
+                  <a
+                    class="collapsed"
+                    role="button"
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#{{ cleanup(pricing?.groupName) }}"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    <h4 class="panel-title">
+                      {{ pricing?.groupName }}
+                      <i class="material-icons">keyboard_arrow_down</i>
+                    </h4>
+                  </a>
+                </div>
+                <div
+                  id="{{ cleanup(pricing?.groupName) }}"
+                  class="panel-collapse collapse"
+                  role="tabpanel"
+                  aria-labelledby="GreenPricing"
+                >
+                  <div class="panel-body">
+                    <div class="col-md-12">
+                      <div class="card card-plain">
+                        <div
+                          class="card-header card-header-icon"
+                          data-background-color="rose"
+                        >
+                          <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Pricing group details</h4>
+                        <p class="category">{{ pricing?.groupName }}</p>
+                        <div class="card-content table-responsive">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="
+                                  let name of pricing?.sizeNames;
+                                  let i = index
+                                "
+                              >
+                                <td>{{ name }}</td>
+                                <td>${{ pricing?.sizePrices[i] }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

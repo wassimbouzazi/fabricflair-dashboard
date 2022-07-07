@@ -1,0 +1,101 @@
+<div class="logo">
+  <div class="logo-normal">
+    <a
+      [routerLink]="['/fabrics']"
+      routerLinkActive="router-link-active"
+      class="simple-text"
+    >
+      Fabric DB
+    </a>
+  </div>
+
+  <div class="logo-img">
+    <img src="/assets/img/fabric-white-logo.png" />
+  </div>
+</div>
+
+<div class="sidebar-wrapper">
+  <div class="user">
+    <div class="photo">
+      <img src="../assets/img/faces/avatar.png" />
+    </div>
+    <div class="info">
+      <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+        <span>
+          {{ email }} / {{ type }}
+          <b class="caret"></b>
+        </span>
+      </a>
+      <div class="collapse in" id="collapseExample" aria-expanded="true">
+        <ul class="nav">
+          <li *ngIf="type == 'root'">
+            <a href="javascript:void(0)" routerLink="/fabrics/addfabric">
+              <span class="sidebar-mini">A</span>
+              <span class="sidebar-normal">Add Fabric</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" (click)="logout()">
+              <span class="sidebar-mini">L</span>
+              <span class="sidebar-normal">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isMobileMenu()">
+    <form class="navbar-form navbar-right" role="search">
+      <div class="form-group form-search is-empty">
+        <input class="form-control" placeholder="Search" type="text" />
+        <span class="material-input"></span>
+        <span class="material-input"></span>
+      </div>
+      <button class="btn btn-white btn-round btn-just-icon" type="submit">
+        <i class="material-icons">search</i>
+        <div class="ripple-container"></div>
+      </button>
+    </form>
+  </div>
+  <div class="nav-container">
+    <ul class="nav">
+      <li routerLinkActive="active" *ngFor="let menuitem of menuItems">
+        <!--If is a single link-->
+        <a [routerLink]="[menuitem.path]" *ngIf="menuitem.type === 'link'">
+          <i class="material-icons">{{ menuitem.icontype }}</i>
+          <p>{{ menuitem.title }}</p>
+        </a>
+        <!--If it have a submenu-->
+        <a
+          data-toggle="collapse"
+          href="#{{ menuitem.collapse }}"
+          *ngIf="menuitem.type === 'sub'"
+          (click)="updatePS()"
+        >
+          <i class="material-icons">{{ menuitem.icontype }}</i>
+          <p>{{ menuitem.title }}<b class="caret"></b></p>
+        </a>
+
+        <!--Display the submenu items-->
+
+        <div
+          id="{{ menuitem.collapse }}"
+          class="collapse"
+          *ngIf="menuitem.type === 'sub'"
+        >
+          <ul class="nav">
+            <li
+              routerLinkActive="active"
+              *ngFor="let childitem of menuitem.children"
+            >
+              <a [routerLink]="[menuitem.path, childitem.path]">
+                <span class="sidebar-mini">{{ childitem.ab }}</span>
+                <span class="sidebar-normal">{{ childitem.title }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

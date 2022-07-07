@@ -1,0 +1,200 @@
+/*
+====================================
+Medium Screen - Others
+====================================
+*/
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+   .hero-content h2 {
+      font-size: 31px;
+   }
+   .uplaod-preview p {
+      font-size: 28px;
+   }
+}
+
+/*
+====================================
+Small Screen - Tablate
+====================================
+*/
+@media screen and (min-width: 768px) and (max-width: 991px) {
+   .hero-content h2 {
+      font-size: 32px;
+   }
+
+   .hero-content p {
+      font-size: 18px;
+   }
+
+   .uplaod-preview p {
+      font-size: 20px;
+   }
+
+   .blizzerd-right {
+      margin-top: 50px;
+   }
+
+}
+
+/*
+====================================
+Small Screen - Mobile
+====================================
+*/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+   
+
+   .hero-content {
+      padding-top: 60px;
+   }
+
+   .hero-content h2 {
+      font-size: 22px;
+      margin-bottom: 30px;
+   }
+
+   .hero-content p {
+      font-size: 16px;
+   }
+
+   .uplaod-preview p {
+      font-size: 16px;
+   }
+
+   .retgister-btn {
+      padding-bottom: 50px;
+      padding-top: 30px;
+   }
+
+   .hero-main {
+      background-position: bottom;
+   }
+
+   .blizerd-area .first-img {
+      margin-right: 0px;
+   }
+
+   .blizerd-area .second-img {
+      position: relative;
+      z-index: 1;
+      margin: 20px 0;
+   }
+
+   .blizerd-area .third-img {
+      margin-left: 0px;
+   }
+
+   .blizerd-area .blizzerd-right {
+      margin-top: 50px;
+   }
+
+   .copyright {
+      padding-top: 50px;
+   }
+
+   .copyright p {
+      margin-bottom: 0;
+      font-size: 16px;
+      padding-bottom: 10px;
+   }
+
+   .contact-information h4 {
+      font-size: 18px;
+   }
+
+   .contact-information h2 {
+      font-size: 21px;
+      margin-bottom: 20px;
+   }
+
+   .contact-information {
+      padding-top: 100px;
+   }
+
+
+   .contact-content h3 {
+      font-size: 28px;
+   }
+}
+
+/*
+====================================
+Xtra Small Screen - Small Mobile
+====================================
+*/
+@media screen and (max-width: 576px) {
+
+   .hero-content {
+      padding-top: 60px;
+   }
+
+   .hero-content h2 {
+      font-size: 22px;
+      margin-bottom: 30px;
+   }
+
+   .hero-content p {
+      font-size: 16px;
+   }
+
+   .uplaod-preview p {
+      font-size: 16px;
+   }
+
+   .retgister-btn {
+      padding-bottom: 50px;
+      padding-top: 30px;
+   }
+
+   .hero-main {
+      background-position: bottom;
+   }
+
+   .blizerd-area .first-img {
+      margin-right: 0px;
+   }
+
+   .blizerd-area .second-img {
+      position: relative;
+      z-index: 1;
+      margin: 20px 0;
+   }
+
+   .blizerd-area .third-img {
+      margin-left: 0px;
+   }
+
+   .blizerd-area .blizzerd-right {
+      margin-top: 50px;
+   }
+
+   .copyright {
+      padding-top: 50px;
+   }
+
+   .copyright p {
+      margin-bottom: 0;
+      font-size: 16px;
+      padding-bottom: 10px;
+   }
+
+   .contact-information h4 {
+      font-size: 18px;
+   }
+
+   .contact-information h2 {
+      font-size: 21px;
+      margin-bottom: 20px;
+   }
+
+   .contact-information {
+      padding-top: 100px;
+   }
+
+
+   .contact-content h3 {
+      font-size: 28px;
+   }
+
+
+}

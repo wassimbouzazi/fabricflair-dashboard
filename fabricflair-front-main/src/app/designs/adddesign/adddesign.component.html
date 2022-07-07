@@ -1,0 +1,123 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <form [formGroup]="form" class="form-horizontal" (ngSubmit)="onDesignDataSubmit()">
+                        <div class="card-header card-header-text" data-background-color="rose">
+                            <h4 class="card-title">Design Information</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-md-3 col-md-offset-9">
+                                    <button type="submit" class="btn btn-success btn-round">
+                                        Add Design
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Pattern name</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        <input formControlName="patternName" type="text" class="form-control" id="patternName">
+                                        <app-field-error-display [displayError]="isFieldValid(form, 'patternName')" errorMsg="Pattern name is required">
+                                        </app-field-error-display>
+                                        <span class="help-block">A brief title for your design</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Description</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        <textarea type="text" class="form-control" id="description" formControlName="description" rows="5"></textarea>
+                                        <app-field-error-display [displayError]="isFieldValid(form, 'description')" errorMsg="Description is required">
+                                        </app-field-error-display>
+                                        <span class="help-block">Describe your design in a few lines</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">SC - Width</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        <input type="number" class="form-control" id="stitchCountWidth" formControlName="stitchCountWidth">
+                                        <app-field-error-display [displayError]="isFieldValid(form, 'stitchCountWidth')" errorMsg="Stitch Count Width must be a number">
+                                        </app-field-error-display>
+                                    </div>
+                                </div>
+                            </div>
+
+                    
+
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">SC - Height</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        <input type="number" class="form-control" id="stitchCountHeight" formControlName="stitchCountHeight">
+                                        <app-field-error-display [displayError]="isFieldValid(form, 'stitchCountHeight')" errorMsg="Stitch Count Height must be a number">
+                                        </app-field-error-display>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Default count</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        <input type="number" class="form-control" id="defaultCount" formControlName="defaultCount">
+                                        <app-field-error-display [displayError]="isFieldValid(form, 'defaultCount')" errorMsg="Default count must be a number">
+                                        </app-field-error-display>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Designer name</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        <input formControlName="designerName" type="text" class="form-control" id="designerName">
+                                        <app-field-error-display [displayError]="isFieldValid(form, 'designerName')" errorMsg="Designer name is required">
+                                        </app-field-error-display>
+                                        <span class="help-block">The design name to which the design belongs to.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail">
+                                            <img src="./assets/img/image_placeholder.jpg" alt="...">
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                        <div>
+                                            <span class="btn btn-rose btn-round btn-file">
+                                                <span class="fileinput-new">Select design file (image)</span>
+                                                <span class="fileinput-exists">Change</span>
+                                                <input type="file" (change)="onImagePicked($event)"/>
+                                            </span>
+                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

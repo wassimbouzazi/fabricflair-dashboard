@@ -1,0 +1,111 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-11">
+        <div class="text-center">
+          <ul
+            class="four-panes-preview"
+            id="sortable1"
+            [hidden]="items.length < 3"
+          >
+            <li class="list-item" id="four_img0">
+              <img
+                *ngIf="items[0] != null"
+                class="nanopreview"
+                src="/thumbnails/{{ fileName(items[0]?.masterFile) }}"
+              />
+            </li>
+            <li class="list-item" id="four_img2">
+              <img
+                *ngIf="items[2] != null"
+                class="nanopreview"
+                src="/thumbnails/{{ fileName(items[2]?.masterFile) }}"
+              />
+            </li>
+            <li class="list-item" id="four_img1">
+              <img
+                *ngIf="items[1] != null"
+                class="nanopreview"
+                src="/thumbnails/{{ fileName(items[1]?.masterFile) }}"
+              />
+            </li>
+            <li class="list-item" id="four_img3">
+              <img
+                *ngIf="items[3] != null"
+                class="nanopreview"
+                src="/thumbnails/{{ fileName(items[3]?.masterFile) }}"
+              />
+            </li>
+          </ul>
+
+          <ul
+            class="two-panes-preview"
+            id="sortable2"
+            [hidden]="!(items == null || items.length < 3)"
+          >
+            <li class="list-item" id="two_img1">
+              <img
+                *ngIf="items[0] != null"
+                class="nanopreview"
+                src="/thumbnails/{{ fileName(items[0]?.masterFile) }}"
+              />
+            </li>
+            <li class="list-item" id="two_img2">
+              <img
+                *ngIf="items[1] != null"
+                class="nanopreview"
+                src="/thumbnails/{{ fileName(items[1]?.masterFile) }}"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-1 col-sm-offset-1">
+        <div class="text-center">
+          <button
+            class="btn btn-primary btn-round proceed_btn"
+            *ngIf="items.length == 4 || items.length == 2"
+            [disabled]="proceeded"
+            (click)="createMedleyv2()"
+          >
+            <i class="material-icons">keyboard_arrow_right</i> PROCEEEED
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <br /><br /><br /><br />
+    <br /><br />
+    <br /><br />
+    <br /><br />
+    <br /><br />
+    <br /><br />
+    <br /><br />
+
+    <div
+      class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"
+      *ngFor="let fabric of fabrics | medleyfilter: filterargs"
+    >
+      <div class="card card-product">
+        <div class="card-image">
+          <a>
+            <img
+              class="img"
+              src="/thumbnails/{{ fileName(fabric.masterFile) }}"
+            />
+          </a>
+        </div>
+        <div class="card-footer">
+          <div class="togglebutton">
+            <label>
+              <input type="checkbox" (change)="imagePicked(fabric, $event)" />
+            </label>
+          </div>
+          <div class="stats pull-right">
+            <p class="category">{{ fabric.title | slice: 0:30 }}...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

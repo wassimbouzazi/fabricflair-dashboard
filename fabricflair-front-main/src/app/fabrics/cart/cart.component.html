@@ -1,0 +1,302 @@
+<style>
+  .previewContainer:hover > .bigPreview {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .bigPreview {
+    cursor: pointer;
+    z-index: 999;
+    height: 300px;
+    width: 200px;
+    display: none;
+    position: absolute;
+    border: 1px grey;
+  }
+</style>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="header text-center">
+      <h3 class="title">Orders</h3>
+      <p class="category">Manage your orders accordingly</p>
+    </div>
+
+    <div class="row text-center" *ngIf="cart?.length == 0">
+      <div class="col-md-12">
+        <h4>Head over to the fabrics section to make your orders.</h4>
+      </div>
+    </div>
+    <div class="row" *ngIf="cart?.length != 0">
+      <div class="col-md-12">
+        <div *ngIf="loaded == true" class="card">
+          <div
+            class="card-header card-header-icon"
+            data-background-color="rose"
+          >
+            <i class="material-icons">assignment</i>
+          </div>
+
+          <div class="card-content">
+            <h4 class="card-title">Orders</h4>
+            <div class="alert alert-danger" *ngIf="deletedCart.length != 0">
+              <ng-container *ngFor="let item of deletedCart">
+                <span
+                  ><b>{{ item.fabric_name }}</b> has been deleted by admin and
+                  is no longer available to purchase.</span
+                >
+              </ng-container>
+            </div>
+            <div class="content table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Preview</th>
+                    <th>Item</th>
+                    <th>Fabric</th>
+                    <th>Size</th>
+                    <th>Silver</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of cart; let i = index">
+                    <td (click)="openImage(order.fabric_name, order.option)">
+                      <div class="previewContainer" style="position: relative">
+                        <img
+                          style="height: 50px; width: 50px; cursor: pointer"
+                          src="previews/{{
+                            order.fabric_name.replaceAll(' ', '_')
+                          }}/{{ order.fabric_name.replaceAll(' ', '_') }}-{{
+                            order.option.includes('-panel')
+                              ? 'full-panel'
+                              : order.option.includes('regular-cut')
+                              ? 'fat-quarter'
+                              : order.option
+                          }}-14-Aida-36x56.jpg"
+                        />
+                        <img
+                          class="bigPreview"
+                          src="previews/{{
+                            order.fabric_name.replaceAll(' ', '_')
+                          }}/{{ order.fabric_name.replaceAll(' ', '_') }}-{{
+                            order.option.includes('-panel')
+                              ? 'full-panel'
+                              : order.option.includes('regular-cut')
+                              ? 'fat-quarter'
+                              : order.option
+                          }}-14-Aida-36x56.jpg"
+                        />
+                      </div>
+                    </td>
+                    <td>{{ order.fabric_name }}</td>
+                    <td>
+                      <mat-form-field class="mat-form-field">
+                        <mat-select
+                          placeholder="Choose Fabric Type"
+                          [(value)]="order.type"
+                          (selectionChange)="onTypeChange($event.value, i)"
+                        >
+                          <mat-option name="fabricType" value="14-aida">
+                            14 Aida
+                          </mat-option>
+                          <mat-option name="fabricType" value="16-aida">
+                            16 Aida
+                          </mat-option>
+                          <mat-option name="fabricType" value="18-aida">
+                            18 Aida
+                          </mat-option>
+                          <mat-option name="fabricType" value="28-evenweave">
+                            28 Evenweave
+                          </mat-option>
+                          <mat-option name="fabricType" value="32-evenweave">
+                            32 Evenweave
+                          </mat-option>
+                          <mat-option name="fabricType" value="36-evenweave">
+                            36 Evenweave
+                          </mat-option>
+                          <mat-option name="fabricType" value="28-linen">
+                            28 Linen
+                          </mat-option>
+                          <mat-option name="fabricType" value="32-linen">
+                            32 Linen
+                          </mat-option>
+                          <mat-option name="fabricType" value="36-linen">
+                            36 Linen </mat-option
+                          ><mat-option name="fabricType" value="40-linen">
+                            40 Linen
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field class="mat-form-field">
+                        <mat-select
+                          placeholder="Choose Fabric Size"
+                          [(value)]="ordersizes[i]"
+                          (selectionChange)="changeOrderData($event.value, i)"
+                        >
+                          <mat-option name="fabricSize" value="euro/fat-16">
+                            40" Fat 16th
+                          </mat-option>
+                          <mat-option name="fabricSize" value="euro/fat-12">
+                            40" Fat 12th
+                          </mat-option>
+                          <mat-option name="fabricSize" value="euro/fat-9">
+                            40" Fat 9th
+                          </mat-option>
+                          <mat-option name="fabricSize" value="euro/fat-8">
+                            40" Fat 8th
+                          </mat-option>
+                          <mat-option
+                            name="fabricSize"
+                            value="euro/regular-cut"
+                          >
+                            40" Regular Cut
+                          </mat-option>
+                          <mat-option name="fabricSize" value="euro/fat-half">
+                            40" Fat Half
+                          </mat-option>
+                          <mat-option
+                            name="fabricSize"
+                            value="euro/40-full-panel"
+                          >
+                            40" Full Panel
+                          </mat-option>
+
+                          <mat-option name="fabricSize" value="us/fat-16">
+                            54" Fat 16th
+                          </mat-option>
+                          <mat-option name="fabricSize" value="us/fat-12">
+                            54" Fat 12th
+                          </mat-option>
+                          <mat-option name="fabricSize" value="us/fat-9">
+                            54" Fat 9th
+                          </mat-option>
+                          <mat-option name="fabricSize" value="us/fat-8">
+                            54" Fat 8th
+                          </mat-option>
+                          <mat-option name="fabricSize" value="us/fat-quarter">
+                            54" Fat Quarter
+                          </mat-option>
+                          <mat-option name="fabricSize" value="us/fat-half">
+                            54" Fat Half
+                          </mat-option>
+                          <mat-option name="fabricSize" value="us/54-panel">
+                            54" Panel
+                          </mat-option>
+
+                          <mat-option
+                            name="fabricSize"
+                            value="bagged/fat-quarter"
+                          >
+                            Fat Quarter (Bagged) </mat-option
+                          ><mat-option
+                            name="fabricSize"
+                            value="bagged/regular-cut"
+                          >
+                            Regular Cut (Bagged)
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <div class="togglebutton">
+                        <label>
+                          <input
+                            name="hasSilver"
+                            type="checkbox"
+                            (change)="onSilverTick($event.target.checked, i)"
+                            [(ngModel)]="order.hasSilver"
+                          />
+                        </label>
+                      </div>
+                    </td>
+                    <td>${{ orderprices[i] }}</td>
+                    <td>
+                      <div class="form-group label-floating">
+                        <label class="control-label" for="Quantity"
+                          >Quantity
+                        </label>
+                        <input
+                          [(ngModel)]="order.quantity"
+                          type="number"
+                          class="form-control"
+                          (ngModelChange)="quantityChanged($event)"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      ${{ orderprices[i] * order.quantity | number: "1.2-2" }}
+                    </td>
+                    <td class="td-actions text-right">
+                      <button
+                        (click)="editOrder(i, order._id)"
+                        type="button"
+                        class="btn btn-success"
+                      >
+                        <i class="material-icons">beenhere</i>
+                      </button>
+                      <button
+                        (click)="deleteOrder(i, order._id)"
+                        type="button"
+                        class="btn btn-danger"
+                      >
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="discount !== 0">
+                    <td colspan="5"></td>
+                    <td class="td-sub">Discount</td>
+                    <td colspan="1" class="td-sub-price">
+                      - ${{ discount | number: "1.2-2" }}
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td colspan="5"></td>
+                    <td class="td-total">Total</td>
+                    <td colspan="1" class="td-price">
+                      $ {{ total | number: "1.2-2" }}
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td colspan="6"></td>
+                    <td colspan="2" class="text-right">
+                      <button
+                        (click)="pay()"
+                        type="button"
+                        class="btn btn-danger btn-round"
+                      >
+                        Complete Purchase (Checkout)
+                        <i class="material-icons">keyboard_arrow_right</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="loaded == false" class="loader" style="margin-top: 5em">
+          <svg class="circular" viewBox="25 25 50 50">
+            <circle
+              class="path"
+              cx="50"
+              cy="50"
+              r="20"
+              fill="none"
+              stroke-width="2"
+              stroke-miterlimit="10"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

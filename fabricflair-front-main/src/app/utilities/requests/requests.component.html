@@ -1,0 +1,74 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 mt-4">
+        <div class="card">
+          <div
+            class="card-header card-header-icon"
+            data-background-color="rose"
+          >
+            <i class="material-icons">assignment</i>
+          </div>
+          <div class="card-content">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Full name</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Company name</th>
+                    <th class="text-center">Company website</th>
+                    <th class="text-center">Company phone</th>
+                    <th class="text-center">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let request of requests; let i = index">
+                    <td class="text-center">{{ i }}</td>
+                    <td class="text-center">{{ request.fullName }}</td>
+                    <td class="text-center">{{ request.email }}</td>
+                    <td class="text-center">{{ request.companyName }}</td>
+                    <td class="text-center">{{ request.companyWebsite }}</td>
+                    <td class="text-center">{{ request.companyPhone }}</td>
+                    <td
+                      class="text-center"
+                      [ngStyle]="{ color: getStatusColor(request.status) }"
+                    >
+                      {{ request.status }}
+                    </td>
+
+                    <td class="td-actions text-right">
+                      <!-- <button type="button" class="btn btn-info">
+                                                  <i class="material-icons">person</i>
+                                              </button> -->
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        (click)="ApproveRequest(request)"
+                        *ngIf="
+                          request?.approved == false ||
+                          request?.status != 'Approved'
+                        "
+                      >
+                        <i class="material-icons">check_box</i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="RejectRequest(request)"
+                        *ngIf="request?.status == 'Pending'"
+                      >
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

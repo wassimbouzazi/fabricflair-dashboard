@@ -1,0 +1,59 @@
+<div class="main-content">
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="orange">
+            <i class="material-icons">dashboard</i>
+          </div>
+          <div class="card-content">
+            <p class="category">Fabrics</p>
+            <h3 class="card-title">{{ databaseInfo?.fabricsCount }}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">storage</i> Generated fabrics:
+              {{ databaseInfo?.generatedFolderSize }} | Fabrics masterfiles:
+              {{ databaseInfo?.masterfilesFolderSize }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="red">
+            <i class="material-icons">request_quote</i>
+          </div>
+          <div class="card-content">
+            <p class="category">Orders</p>
+            <h3 class="card-title">{{ databaseInfo?.ordersCount }}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">paid</i>
+              {{ databaseInfo?.unprocessedOrdersCount }} Unprocessed order(s) |
+              Orders folder size: {{ databaseInfo?.ordersFolderSize }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="green">
+            <i class="material-icons">perm_identity</i>
+          </div>
+          <div class="card-content">
+            <p class="category">Customers</p>
+            <h3 class="card-title">{{ databaseInfo?.customersCount }}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">record_voice_over</i>
+              {{ databaseInfo?.exclusiveCustomersCount }} Exclusive Customers
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

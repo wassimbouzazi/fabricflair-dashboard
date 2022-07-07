@@ -1,0 +1,88 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div>
+            <div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5>Current active categories: {{ categories?.length }}</h5>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button class="btn btn-danger btn-round" (click)="addParentCategory()">
+                            <i class="material-icons">add_to_photos</i> Add category
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="title text-center">BigCommerce FF' Categories</h3>
+
+                <br />
+                <div class="nav-center">
+                    <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
+                        <!--
+            color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+        -->
+                        <li *ngFor="let category of categories let i = index" [ngClass]="i==0 ? 'active' : ''">
+                            <a href="#{{category?.parent_name | removewhitespaces}}" role="tab" data-toggle="tab">
+                                <i class="material-icons">category</i> {{category?.parent_name}}"
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div  *ngFor="let category of categories; let i = index" id="{{category?.parent_name | removewhitespaces}}" [ngClass]="i == 0 ? 'tab-pane active' : 'tab-pane'">
+                        <div class="card">
+                            <div class="card-header">
+
+
+                                <div class="row">
+                                <div class="col-sm-6">
+                                    <h4 class="card-title">{{category?.parent_name}}</h4>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <button class="btn btn-primary btn-round btn-fab btn-fab-mini" (click)="deleteParentCategory(category)">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                    <button class="btn btn-primary btn-round btn-fab btn-fab-mini" (click)="addSubCategory(category)">
+                                        <i class="material-icons">add</i>
+                                    </button>
+                                </div>
+                            </div>
+                                <p class="category">
+                                    This parent category has {{category?.children.length}} sub-categories
+                                </p>
+                            </div>
+                            <div class="card-content" >
+                                <div class="table-responsive" *ngIf="category?.children.length != 0">
+                                    <table class="table">
+                                          <tbody>
+                                              <tr *ngFor="let sub of category?.children; let k = index">
+                                                  <td class="text-center">{{ category?.children[k]?.id }}</td>
+                                                  <td class="text-center">{{ category?.children[k]?.name }}</td>
+                                                  <td class="td-actions text-right">
+                                                      <!-- <button type="button" class="btn btn-success btn-round">
+                                                          <i class="material-icons">edit</i>
+                                                      </button> -->
+                                                      <button type="button" class="btn btn-danger btn-round" (click)="deleteSubCategory(sub)">
+                                                          <i class="material-icons">close</i>
+                                                      </button>
+                                                  </td>
+                                              </tr>
+                                          </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,288 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="rose">
+                        <i class="material-icons">title</i>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title">{{ fabric?.title }}</h4>
+                        <button class="btn btn-danger btn-round" (click)="generate()" [disabled]="generating">Generate</button>
+                        
+                        <mat-progress-bar mode="indeterminate" color="warn" *ngIf="generating"></mat-progress-bar>
+
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="rose">
+                        <i class="material-icons">photo_size_select_actual</i>
+                    </div>
+                    <div class="card-content">
+                        
+                        <h4 class="card-title">Select Fabric Type (Required)</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tbody>
+                                        <tr>
+                                                <td>
+                                                    <div [ngSwitch]="true">
+                                                        <div>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" name="optionsCheckboxes"
+                                                                        [(ngModel)]="typeAll" (change)="typeAllChange($event)">
+                                                                </label>
+                                                            </div>
+                                                        </div>
+        
+                                                    </div>
+                                                </td>
+                                                <td>All</td>
+                                            </tr>
+                                    <tr *ngFor="let type of types">
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="type.isChecked">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>{{ type.placeholder }}</td>
+                                    </tr>
+                                    <!-- <br>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="aida14">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>14 ct. Aida</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="aida16">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>16 ct. Aida</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="aida18">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>18 ct. Aida</td>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="evenweave28">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>28 ct. Evenweave</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="evenweave32">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>32 ct. Evenweave</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="evenweave36">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>36 ct. Evenweave</td>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="linen28">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>28 ct. Linen</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="linen32">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>32 ct. Linen</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="linen36">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>36 ct. Linen</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"
+                                                                [(ngModel)]="linen40">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>40 ct. Linen</td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="rose">
+                        <i class="material-icons">merge_type</i>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title">Select Fabric Size (Required)</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes" [(ngModel)]="sizeAll" (change)="sizeAllChange($event)">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>All</td>
+                                    </tr>
+                                    <br>
+                                    <tr *ngFor="let size of sizes">
+                                        <td>
+                                            <div [ngSwitch]="true">
+                                                <div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes" [(ngModel)]="size.isChecked" >
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>{{ size.placeholder }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
